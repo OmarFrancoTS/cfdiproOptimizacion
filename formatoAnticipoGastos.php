@@ -63,7 +63,8 @@ $sqlGA = "SELECT a.XFolio,
           FROM {$prefijobd}gastosviajes a
           LEFT JOIN {$prefijobd}operadores b ON a.OperadorNombre_RID = b.ID
           LEFT JOIN {$prefijobd}unidades   c ON a.Unidad_RID   = c.ID
-          LEFT JOIN {$prefijobd}unidades   d ON a.uRemolqueA_RID = d.ID
+          INNER JOIN {$prefijobd}remisiones AS r ON a.Remision_RID = r.ID
+          LEFT JOIN {$prefijobd}unidades   d ON r.uRemolqueA_RID = d.ID
           WHERE a.ID = ?
           LIMIT 1";
 

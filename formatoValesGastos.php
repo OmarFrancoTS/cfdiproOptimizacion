@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL);
+error_reporting(0);
 ini_set('display_errors', 1);
 ini_set('memory_limit', '512M');
 set_time_limit(300);
@@ -18,7 +18,7 @@ if (!isset($_GET['tipo']) || empty($_GET['tipo'])) {
     die("Falta el tipo de Formato del Gasto");
 }
 
-$prefijobd = mysqli_real_escape_string($cnx_cfdi2, $_GET["prefijodb"]);
+$prefijobd = mysqli_real_escape_string($cnx_cfdi2, $_GET["prefijo"]);
 $idFolio   = (int) $_GET["id"];
 $tipo      = mysqli_real_escape_string($cnx_cfdi2, $_GET["tipo"]);
 
@@ -315,8 +315,8 @@ function bloqueCombustible($data) {
                     </tr>
                     <tr>
                         <td colspan="2" align="center" style="padding-top: 4px;">
-                            <barcode code="'.$data['codigoBarra'].'" type="C128A" size="0.85" height="1.0" />
-                            <div style="font-size: 8px; padding-top: 2px;">'.$data['codigoBarra'].'</div>
+                            <barcode code="'.$data['codigoBarra'].'" type="C128A" size="1.1" height="1.2" />
+                            
                         </td>
                     </tr>
                 </table>
@@ -522,6 +522,6 @@ $html = '
 $mpdf = new mPDF('utf-8', 'Letter', 0, '', 8, 8, 8, 8, 0, 0);
 $mpdf->WriteHTML($html);
 $nombreArchivo = strtolower(str_replace(' ', '_', $nombreDoc)).'_'.$folio.'.pdf';
-$mpdf->Output($nombreArchivo, 'I');
+$mpdf->Output($nombreArchivo, 'D');
 exit;
 ?>
